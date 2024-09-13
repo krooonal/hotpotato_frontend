@@ -1,3 +1,4 @@
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const API_BASE_URL = 'https://hotpotato.krooonal.com/game';
 
 async function startGame() {
@@ -8,7 +9,7 @@ async function startGame() {
     }
     
     try {
-        const response = await fetch(`${API_BASE_URL}/start/`, {
+        const response = await fetch(`${PROXY_URL}${API_BASE_URL}/start/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_email: email }),
