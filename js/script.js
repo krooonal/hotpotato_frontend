@@ -1,5 +1,6 @@
+// To start local server: http-server -p 8080
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-const API_BASE_URL = 'https://hotpotato.krooonal.com/game';
+const API_BASE_URL = 'http://localhost:8000/game';
 
 async function startGame() {
     const email = document.getElementById('start-email').value;
@@ -9,7 +10,7 @@ async function startGame() {
     }
     
     try {
-        const response = await fetch(`${PROXY_URL}${API_BASE_URL}/start/`, {
+        const response = await fetch(`${API_BASE_URL}/start/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_email: email }),
@@ -18,8 +19,8 @@ async function startGame() {
         const data = await response.json();
         if (data.game_id) {
             alert('Game started successfully! Game ID: ' + data.game_id);
-            document.getElementById('start-game').style.display = 'none';
-            document.getElementById('pass-potato').style.display = 'block';
+            // document.getElementById('start-game').style.display = 'none';
+            // document.getElementById('pass-potato').style.display = 'block';
         } else {
             alert('Error starting game: ' + data.error);
         }
@@ -31,7 +32,17 @@ async function startGame() {
 
 async function passPotato() {
     const email = document.getElementById('pass-email').value;
-    const gameId = prompt('Enter the Game ID:'); // For simplicity, ask for game ID manually
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    const gameId = urlParams.get('gameId');
+    const cuser = urlParams.get('user');
+    if (!gameId) {
+        const gameId = prompt('Enter the Game ID:'); // For simplicity, ask for game ID manually
+    }
+    if (!cuser) {
+        cuser = "Someone"
+    }
     
     if (!email || !gameId) {
         alert('Please enter both email and Game ID.');
@@ -42,11 +53,12 @@ async function passPotato() {
         const response = await fetch(`${API_BASE_URL}/pass/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ game_id: gameId, current_user: 'current_user@example.com', new_user: email }),
+            body: JSON.stringify({ game_id: gameId, current_user: cuser, new_user: email }),
         });
         const data = await response.json();
         if (data.message) {
             alert('Potato passed successfully to ' + email);
+            window.location.replace("index.html");
         } else {
             alert('Error passing potato: ' + data.error);
         }
