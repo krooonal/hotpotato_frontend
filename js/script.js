@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://your-vercel-backend-url.vercel.app/game';
+const API_BASE_URL = 'https://hotpotato-game.vercel.app//game';
 
 async function startGame() {
     const email = document.getElementById('start-email').value;
