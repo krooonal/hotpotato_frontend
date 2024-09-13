@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Potato Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Hot Potato Game</h1>
+    
+    <div id="start-game">
+        <h2>Start a New Game</h2>
+        <input type="email" id="start-email" placeholder="Enter your email">
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    
+    <div id="pass-potato" style="display:none;">
+        <h2>Pass the Potato</h2>
+        <input type="text" id="pass-email" placeholder="Enter email to pass to">
+        <button onclick="passPotato()">Pass Potato</button>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
