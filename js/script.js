@@ -12,6 +12,7 @@ async function startGame() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_email: email }),
+            mode: 'cors', // Ensure CORS is handled
         });
         const data = await response.json();
         if (data.game_id) {
