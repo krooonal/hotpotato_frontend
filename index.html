@@ -11,14 +11,24 @@
     
     <div id="start-game">
         <h2>Start a New Game</h2>
-        <input type="email" id="start-email" placeholder="Enter your email">
+        <input type="email" id="start-email" placeholder="Enter your user id">
         <button onclick="startGame()">Start Game</button>
     </div>
-    
-    <div id="pass-potato" style="display:none;">
-        <h2>Pass the Potato</h2>
-        <input type="text" id="pass-email" placeholder="Enter email to pass to">
-        <button onclick="passPotato()">Pass Potato</button>
+
+    <div id="status">
+    </div>
+
+    <img src="hot_potato_nobg.png" width=25%>
+
+    <div id="gamedesc">
+        <h3>Rules:</h3>
+        <ul>
+            <li>You can create a new game by entering your user id.</li>
+            <li>When you receive the hot potato, pass it in 24 hours to another user.</li>
+            <li>You can not pass the potato to a user who has 
+                previously held the hot potato in the current game.</li>
+            <li>If you fail to pass the hot potato in 24 hours, the game ends.</li>
+        </ul>
     </div>
     
     <script src="js/script.js"></script>
